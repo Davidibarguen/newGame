@@ -1,3 +1,4 @@
+const newLocal = '';
 const emojis={
     '-':' ',
     'O':'🚪',
@@ -7,6 +8,7 @@ const emojis={
     'BOMB_COLLISION':'ðŸ”¥',
     'GAME_OVER':'ðŸ‘Ž',
     'WIN':'ðŸ†',
+    'cora':'❤'
 };
 const maps=[];
 maps.push(`
