@@ -5,7 +5,7 @@ const emojis={
     'X':'💣',
     'I':'🎁',
     'PLAYER':'👹',
-    'BOMB_COLLISION':'ðŸ”¥',
+    'BOMB_COLLISION':'💥',
     'GAME_OVER':'ðŸ‘Ž',
     'WIN':'ðŸ†',
     'cora':'❤'

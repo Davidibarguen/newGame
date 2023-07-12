@@ -7,6 +7,10 @@ const down = document.querySelector('.down');
 const vidas = document.querySelector('#corazones')
 const tiempo = document.querySelector('#close')
 const spanrecor = document.querySelector('#rerc')
+const quitar= document.querySelector('.cierre')
+const textLogro=document.querySelector('.mensajeResultado')
+const jugar=document.querySelector('.jugar')
+
 const positionplayer={
     x: undefined,
     y: undefined
@@ -16,6 +20,7 @@ const positionRegalo={
     y:undefined
 }
 let arrayCollision=[]
+jugar.addEventListener('click',recargar);
 window.addEventListener('load',responsive);
 window.addEventListener('resize',responsive);
 // canvas.addEventListener('rezise',startGame)
@@ -25,6 +30,7 @@ let canvaSizes;
 let elemento;
 let level = 0;
 let lives = 3;
+
 function startGame() {
     
    console.log({canvaSizes, elemento});
@@ -74,7 +80,9 @@ function startGame() {
                 x:posX,
                 y:posY
             })
+            
          }
+    
      
          game.fillText(emoji,posX,posY);
          
@@ -95,15 +103,18 @@ function moveplayer() {
     const reColision = arrayCollision.find(enemy =>{
         const colisionX= enemy.x  == positionplayer.x;
         const colisionY=  enemy.y == positionplayer.y;
-        return colisionX && colisionY ;
+           return colisionX && colisionY ;
+       
     })
     if(reColision){
        console.log( 'se te exploto el puto culo cabron ')
+        
        perdistes()
+       
+       textLogro.innerHTML=('No te rindas nunca es tarde para volver a intentarlo 😎🤞')
+      
     }
-
-
-
+    
     game.fillText(emojis['PLAYER'],positionplayer.x,positionplayer.y);
     records()  
 }
@@ -213,12 +224,16 @@ function perdistes () {
         level=0;
        lives =3;
        time = undefined;
+       inacti()
     }
     positionplayer.x = undefined;
     positionplayer.y = undefined;
     
     startGame()
     showlifes()
+    
+    
+  
  
 }
 function showlifes(){
@@ -238,22 +253,30 @@ function findeljuego(){
        if(recor >= playertime){
         
         localStorage.setItem('local-time',playertime)
-        
+        textLogro.innerHTML=('ERES LA MEJOR SIGUE Asi 😉✌')
        }
        else{
-        console.log('no superastes el record vuelve a intentarlo')
+        textLogro.innerHTML=('JaJajAjA nO SUPERASTES EL  RECORD😂😂')
        }
        console.log(recor,playertime)
     }
     else{
         localStorage.setItem('local-time',playertime)
     }
+    inacti()
+    // if(quitar){
+    //     quitar.classList.toggle('inactive')
+    // }
      
     }
 function records(){
         spanrecor.textContent=localStorage.getItem('local-time')
     }
 
-function decimal(n){
-    return Number( n.toFixed(2));
+function inacti(){
+    quitar.classList.toggle('inactive')
+}
+// aqui vamos a recargar la página cada vez que un damos el boton de jugar
+function recargar(){
+    window.location.reload()
 }
